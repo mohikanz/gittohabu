@@ -1,0 +1,11 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: inductor/hugo-firebase-tools:latest
+    working_directory: ~/project
+    steps:
+      - checkout
+      - run:
+          name: "Deploy"
+          command: cd public && firebase deploy --only hosting --token "$FIREBASE_TOKEN"
